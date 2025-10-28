@@ -1,1 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta carset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irakoze Kevin | IT Consultant & Educator Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for professional icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom styles for a professional look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            --primary-color: #0d9488; /* Emerald 600 */
+            --background-dark: #0f172a; /* Slate 900 */
+            --text-light: #f1f5f9; /* Slate 100 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+
+        .section-padding {
+            padding: 4rem 1rem;
+        }
+
+        /* Styling for the nav link active state/hover */
+        .nav-link:hover, .nav-link:focus {
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .contact-link {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; 
+        }
+
+        /* Media card hover effect */
+        .media-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .media-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Placeholder for logo - using inline SVG */
+        .logo-svg {
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0d9488', // Emerald 600
+                        'secondary': '#1e293b', // Slate 800
+                        'dark-bg': '#0f172a', // Slate 900
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <!-- 
+        ======================================== 
+        NAVIGATION BAR 
+        ========================================
+    -->
+    <header class="sticky top-0 z-50 bg-dark-bg/95 backdrop-blur-sm shadow-xl border-b border-primary/20">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <!-- Placeholder Logo -->
+                <svg class="logo-svg w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                <a href="#about" class="text-xl font-bold text-primary tracking-wide">Irakoze Kevin</a>
+            </div>
+            
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#about" class="nav-link transition duration-300">About</a>
+                <a href="#education" class="nav-link transition duration-300">Education</a>
+                <a href="#teaching" class="nav-link transition duration-300">Teaching</a>
+                <a href="#experience" class="nav-link transition duration-300">Experience</a>
+                <a href="#media" class="nav-link transition duration-300">Archivements</a>
+                <a href="#contact" class="nav-link transition duration-300">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-secondary transition duration-150">
+                <svg id="menu-icon" class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <svg id="close-icon" class="w-6 h-6 text-primary hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-bg border-t border-primary/20">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">About</a>
+                <a href="#education" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">Education</a>
+                <a href="#teaching" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">Teaching</a>
+                <a href="#experience" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">Experience</a>
+                <a href="#media" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">Archivements</a>
+                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium transition duration-300">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto">
+
+        <!-- 
+            ======================================== 
+            HERO/ABOUT SECTION 
+            ========================================
+        -->
+        <section id="about" class="section-padding flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-8" aria-labelledby="about-heading">
+            <div class="md:w-3/5">
+                <h1 id="about-heading" class="text-4xl sm:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-300 mb-4">
+                    Irakoze Kevin
+                </h1>
+                <h2 class="text-xl sm:text-3xl font-semibold text-slate-300 mb-6">
+                    IT Consultant & Passionate Educator
+                </h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto md:mx-0">
+                    I am dedicated to bridging the gap between cutting-edge technology and practical education. With a strong background in full-stack development and cloud solutions, I empower the next generation of IT professionals.
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start">
+                    <a href="#contact" class="px-6 py-3 bg-primary text-dark-bg font-bold rounded-full shadow-lg hover:bg-primary/90 transition duration-300 transform hover:scale-105">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Placeholder Professional Photo -->
+            <div class="md:w-2/5 flex justify-center">
+                <div class="w-56 h-56 sm:w-72 sm:h-72 bg-secondary rounded-full border-4 border-primary shadow-2xl overflow-hidden flex items-center justify-center">
+                    <svg class="w-32 h-32 text-primary/50" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4a4 4 0 100 8 4 4 0 000-8zm0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ======================================== 
+            CONTACT LINKS SECTION 
+            ========================================
+        -->
+        <div class="bg-secondary/50 py-10">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <a href="https://wa.me/250788123456" target="_blank" class="contact-link bg-secondary p-4 rounded-xl shadow-lg flex flex-col items-center justify-center">
+                    <i data-lucide="message-square-text" class="w-8 h-8 text-primary mb-2"></i>
+                    <span class="font-semibold text-slate-300">WhatsApp</span>
+                    <span class="text-sm text-slate-400">+250 788 123 456</span>
+                </a>
+                <a href="https://instagram.com/irakoze_kevin" target="_blank" class="contact-link bg-secondary p-4 rounded-xl shadow-lg flex flex-col items-center justify-center">
+                    <i data-lucide="instagram" class="w-8 h-8 text-primary mb-2"></i>
+                    <span class="font-semibold text-slate-300">Instagram</span>
+                    <span class="text-sm text-slate-400">@irakoze_kevin</span>
+                </a>
+                <a href="tel:+250788123456" class="contact-link bg-secondary p-4 rounded-xl shadow-lg flex flex-col items-center justify-center">
+                    <i data-lucide="phone" class="w-8 h-8 text-primary mb-2"></i>
+                    <span class="font-semibold text-slate-300">Telephone</span>
+                    <span class="text-sm text-slate-400">+250 788 123 456</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 
+            ======================================== 
+            EDUCATION SECTION (DEGREES) 
+            ========================================
+        -->
+        <section id="education" class="section-padding">
+            <h3 class="text-3xl font-bold text-center mb-10 border-b-2 border-primary/50 pb-2">Degrees & Education</h3>
+            <div class="space-y-8 max-w-4xl mx-auto">
+                <!-- Degree 1 -->
+                <div class="bg-secondary p-6 rounded-xl shadow-2xl border-l-4 border-primary transform hover:scale-[1.01] transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold text-slate-200">Master of Information Technology</h4>
+                        <span class="text-primary font-medium">2018 - 2020</span>
+                    </div>
+                    <p class="text-slate-400 mt-1">University of Technology, Kigali</p>
+                    <p class="text-slate-400 text-sm mt-3">Specialization in Cloud Architecture and System Security.</p>
+                </div>
+                <!-- Degree 2 -->
+                <div class="bg-secondary p-6 rounded-xl shadow-2xl border-l-4 border-primary transform hover:scale-[1.01] transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-bold text-slate-200">Bachelor of Science in Computer Science</h4>
+                        <span class="text-primary font-medium">2014 - 2018</span>
+                    </div>
+                    <p class="text-slate-400 mt-1">Rwanda Institute of Science and Technology (RIST)</p>
+                    <p class="text-slate-400 text-sm mt-3">Focus on Software Engineering and Database Management.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ======================================== 
+            TEACHING SUBJECTS SECTION 
+            ========================================
+        -->
+        <section id="teaching" class="section-padding bg-secondary/50">
+            <h3 class="text-3xl font-bold text-center mb-10 border-b-2 border-primary/50 pb-2">IT Subjects I Teach</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Subject 1 -->
+                <div class="p-6 bg-secondary rounded-xl shadow-2xl text-center flex flex-col items-center hover:shadow-primary/50 transition duration-300">
+                    <i data-lucide="code" class="w-10 h-10 text-primary mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Full-Stack Web Development</h4>
+                    <p class="text-slate-400 text-sm">React, Node.js, Express, MongoDB/PostgreSQL.</p>
+                </div>
+                <!-- Subject 2 -->
+                <div class="p-6 bg-secondary rounded-xl shadow-2xl text-center flex flex-col items-center hover:shadow-primary/50 transition duration-300">
+                    <i data-lucide="layers" class="w-10 h-10 text-primary mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Data Structures & Algorithms</h4>
+                    <p class="text-slate-400 text-sm">Core concepts, efficient coding practices, and complexity analysis.</p>
+                </div>
+                <!-- Subject 3 -->
+                <div class="p-6 bg-secondary rounded-xl shadow-2xl text-center flex flex-col items-center hover:shadow-primary/50 transition duration-300">
+                    <i data-lucide="cloud" class="w-10 h-10 text-primary mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Cloud Computing Fundamentals</h4>
+                    <p class="text-slate-400 text-sm">Introduction to AWS, Azure, virtualization, and containerization (Docker).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ======================================== 
+            OTHER EXPERIENCE SECTION 
+            ========================================
+        -->
+        <section id="experience" class="section-padding">
+            <h3 class="text-3xl font-bold text-center mb-10 border-b-2 border-primary/50 pb-2">Professional Experience</h3>
+            <div class="space-y-10 max-w-4xl mx-auto">
+                <!-- Experience 1 -->
+                <div class="relative pl-8 md:pl-16">
+                    <div class="absolute w-2 h-full bg-primary/20 left-0 md:left-4"></div>
+                    <div class="absolute w-5 h-5 bg-primary rounded-full -left-[6px] md:left-2 top-1 shadow-xl"></div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-2xl transform hover:scale-[1.01] transition duration-300">
+                        <h4 class="text-xl font-bold text-slate-200 mb-1">Lead Software Architect</h4>
+                        <p class="text-primary font-medium mb-2">Tech Innovators Inc. | 2020 - Present</p>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-400 text-sm">
+                            <li>Led a team of 8 developers in migrating core systems to a microservices architecture on AWS, resulting in 40% reduction in latency.</li>
+                            <li>Designed and implemented the company's continuous integration/delivery (CI/CD) pipeline.</li>
+                            <li>Mentored junior staff in adopting best practices for scalable software development.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Experience 2 -->
+                <div class="relative pl-8 md:pl-16">
+                    <div class="absolute w-2 h-full bg-primary/20 left-0 md:left-4"></div>
+                    <div class="absolute w-5 h-5 bg-primary rounded-full -left-[6px] md:left-2 top-1 shadow-xl"></div>
+                    <div class="bg-secondary p-6 rounded-xl shadow-2xl transform hover:scale-[1.01] transition duration-300">
+                        <h4 class="text-xl font-bold text-slate-200 mb-1">Freelance Web Designer & Developer</h4>
+                        <p class="text-primary font-medium mb-2">Self-Employed | 2018 - 2020</p>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-400 text-sm">
+                            <li>Successfully delivered over 15 custom websites and web applications for small businesses and non-profits.</li>
+                            <li>Specialized in responsive design and optimizing sites for speed and accessibility.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ======================================== 
+            ACHIEVEMENTS (MEDIA) SECTION 
+            ========================================
+        -->
+        <section id="media" class="section-padding bg-secondary/50">
+            <h3 class="text-3xl font-bold text-center mb-10 border-b-2 border-primary/50 pb-2">Archivements & Media</h3>
+            
+            <h4 class="text-2xl font-semibold mb-6 text-slate-300">Achievement Video</h4>
+            <div class="max-w-4xl mx-auto mb-12">
+                <!-- Video Placeholder -->
+                <div class="media-card aspect-video w-full bg-dark-bg border border-primary/50 rounded-xl shadow-2xl flex items-center justify-center p-6">
+                    <div class="text-center">
+                        <i data-lucide="youtube" class="w-12 h-12 text-primary mb-3"></i>
+                        <p class="text-slate-400 font-medium">Placeholder for Key Achievement Video (e.g., conference talk, project demo)</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="text-2xl font-semibold mb-6 text-slate-300">Photo Gallery</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                <!-- Photo Placeholders -->
+                <div class="media-card aspect-square bg-secondary rounded-xl shadow-lg border border-primary/20 flex items-center justify-center p-3">
+                    <p class="text-slate-400 text-sm text-center">Project Award Photo</p>
+                </div>
+                <div class="media-card aspect-square bg-secondary rounded-xl shadow-lg border border-primary/20 flex items-center justify-center p-3">
+                    <p class="text-slate-400 text-sm text-center">Teaching Workshop</p>
+                </div>
+                <div class="media-card aspect-square bg-secondary rounded-xl shadow-lg border border-primary/20 flex items-center justify-center p-3">
+                    <p class="text-slate-400 text-sm text-center">Team Photo</p>
+                </div>
+                <div class="media-card aspect-square bg-secondary rounded-xl shadow-lg border border-primary/20 flex items-center justify-center p-3">
+                    <p class="text-slate-400 text-sm text-center">Certification Proof</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            ======================================== 
+            LOCATION SECTION 
+            ========================================
+        -->
+        <section id="contact" class="section-padding">
+            <h3 class="text-3xl font-bold text-center mb-10 border-b-2 border-primary/50 pb-2">Find Me / Location</h3>
+            <div class="max-w-4xl mx-auto bg-secondary p-6 rounded-xl shadow-2xl">
+                <p class="text-center text-lg text-slate-300 mb-4 flex items-center justify-center">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-primary mr-2"></i>
+                    Primary Location: <span class="font-semibold ml-2 text-white">Kigali, Rwanda</span>
+                </p>
+                <!-- Map Placeholder -->
+                <div class="aspect-[16/9] w-full bg-dark-bg border border-primary/50 rounded-lg flex items-center justify-center mt-4">
+                    <div class="text-center">
+                        <i data-lucide="globe" class="w-10 h-10 text-primary mb-2"></i>
+                        <p class="text-slate-400 font-medium">Interactive Map Placeholder Area</p>
+                        <p class="text-xs text-slate-500 mt-1">Contact me directly for meeting details.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 
+        ======================================== 
+        FOOTER 
+        ========================================
+    -->
+    <footer class="bg-secondary text-center py-6 mt-12 border-t border-primary/20">
+        <p class="text-slate-400 text-sm">&copy; 2025 Irakoze Kevin. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 mt-3">
+            <a href="https://instagram.com/irakoze_kevin" target="_blank" class="text-primary hover:text-primary/70 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <a href="https://wa.me/250788123456" target="_blank" class="text-primary hover:text-primary/70 transition"><i data-lucide="message-square-text" class="w-5 h-5"></i></a>
+            <a href="tel:+250788123456" class="text-primary hover:text-primary/70 transition"><i data-lucide="phone" class="w-5 h-5"></i></a>
+        </div>
+        <!-- Back to Top Link Added -->
+        <div class="mt-4">
+            <a href="#about" class="text-primary hover:text-primary/70 text-sm font-medium transition duration-300 flex items-center justify-center">
+                <i data-lucide="arrow-up" class="w-4 h-4 mr-1"></i>
+                Back to Top
+            </a>
+        </div>
+    </footer>
+
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // JavaScript for Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const navLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isMenuOpen = mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden', !isMenuOpen);
+            closeIcon.classList.toggle('hidden', isMenuOpen);
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
+Portfolio
 
